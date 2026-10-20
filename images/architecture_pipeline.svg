@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" width="100%" height="280">
+  <rect x="2" y="2" width="916" height="276" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+  <text x="460" y="34" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#c9d1d9" text-anchor="middle">End-to-End Secure &amp; Memory-Efficient LLM Inference Pipeline</text>
+  <text x="460" y="54" font-family="ui-monospace, monospace" font-size="11.5" fill="#8b949e" text-anchor="middle">Phase-Aware Guardrail Filtering • Dynamic Long-Context Calibration • Structural Anchor KV Eviction</text>
+
+  <!-- Stage 1: MCP C-Sidecar -->
+  <rect x="28" y="76" width="256" height="174" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="1.8"/>
+  <rect x="28" y="76" width="256" height="32" rx="10" fill="#238636"/>
+  <text x="156" y="97" font-family="ui-sans-serif, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Stage 1: Edge C-Sidecar Guard</text>
+  <text x="44" y="128" font-family="ui-monospace, monospace" font-size="11.5" fill="#7ee787">• Schema Pinning (Allowlist)</text>
+  <text x="44" y="150" font-family="ui-monospace, monospace" font-size="11.5" fill="#7ee787">• PromptGuard-Lite (TR/EN)</text>
+  <text x="44" y="172" font-family="ui-monospace, monospace" font-size="11.5" fill="#7ee787">• CodeShield-Lite (CWE Scan)</text>
+  <rect x="44" y="192" width="224" height="42" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="156" y="210" font-family="ui-monospace, monospace" font-size="11" fill="#c9d1d9" text-anchor="middle">3x Firefly RK3566 Latency:</text>
+  <text x="156" y="226" font-family="ui-monospace, monospace" font-size="11.5" font-weight="700" fill="#3fb950" text-anchor="middle">0.013 – 0.052 ms / call</text>
+
+  <!-- Arrow 1 -->
+  <text x="308" y="168" font-family="ui-monospace, monospace" font-size="22" font-weight="700" fill="#58a6ff" text-anchor="middle">➔</text>
+
+  <!-- Stage 2: Long-Context Calibration -->
+  <rect x="332" y="76" width="256" height="174" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="1.8"/>
+  <rect x="332" y="76" width="256" height="32" rx="10" fill="#1f6feb"/>
+  <text x="460" y="97" font-family="ui-sans-serif, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Stage 2: Prefill Calibration</text>
+  <text x="348" y="128" font-family="ui-monospace, monospace" font-size="11.5" fill="#79c0ff">• Outlier Channel Detection</text>
+  <text x="348" y="150" font-family="ui-monospace, monospace" font-size="11.5" fill="#79c0ff">• Ratio Schedule γ(L / L_max)</text>
+  <text x="348" y="172" font-family="ui-monospace, monospace" font-size="11.5" fill="#79c0ff">• Mitigates Lost-in-the-Middle</text>
+  <rect x="348" y="192" width="224" height="42" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="460" y="210" font-family="ui-monospace, monospace" font-size="11" fill="#c9d1d9" text-anchor="middle">Multi-Doc QA / LongBench:</text>
+  <text x="460" y="226" font-family="ui-monospace, monospace" font-size="11.5" font-weight="700" fill="#58a6ff" text-anchor="middle">+15.2% Mid-Context Recall</text>
+
+  <!-- Arrow 2 -->
+  <text x="612" y="168" font-family="ui-monospace, monospace" font-size="22" font-weight="700" fill="#bc8cff" text-anchor="middle">➔</text>
+
+  <!-- Stage 3: AnchorAwarePress Decoding -->
+  <rect x="636" y="76" width="256" height="174" rx="10" fill="#161b22" stroke="#bc8cff" stroke-width="1.8"/>
+  <rect x="636" y="76" width="256" height="32" rx="10" fill="#6e40c9"/>
+  <text x="764" y="97" font-family="ui-sans-serif, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Stage 3: CoT KV Compression</text>
+  <text x="652" y="128" font-family="ui-monospace, monospace" font-size="11.5" fill="#d2a8ff">• Structural Pivot Retention</text>
+  <text x="652" y="150" font-family="ui-monospace, monospace" font-size="11.5" fill="#d2a8ff">• Cosine Key De-duplication</text>
+  <text x="652" y="172" font-family="ui-monospace, monospace" font-size="11.5" fill="#d2a8ff">• Prevents CoT Trace Inflation</text>
+  <rect x="652" y="192" width="224" height="42" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="764" y="210" font-family="ui-monospace, monospace" font-size="11" fill="#c9d1d9" text-anchor="middle">GSM8K / MATH-500 @ 20% KV:</text>
+  <text x="764" y="226" font-family="ui-monospace, monospace" font-size="11.5" font-weight="700" fill="#d2a8ff" text-anchor="middle">80% Memory Saved, 100% Acc</text>
+</svg>
