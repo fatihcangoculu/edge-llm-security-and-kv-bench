@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="100%" height="430">
+  <defs>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#238636"/>
+      <stop offset="100%" stop-color="#3fb950"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1f6feb"/>
+      <stop offset="100%" stop-color="#58a6ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="916" height="426" rx="12" fill="url(#termBg)" stroke="#30363d" stroke-width="2"/>
+  <rect x="2" y="2" width="916" height="38" rx="12" fill="#161b22"/>
+  <line x1="2" y1="40" x2="918" y2="40" stroke="#30363d" stroke-width="1.5"/>
+  <circle cx="24" cy="21" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="21" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="21" r="6" fill="#27c93f"/>
+  <text x="460" y="25" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#8b949e" text-anchor="middle">fatih@rk3566-cluster: ~/edge-llm-security-and-kv-bench (zsh)</text>
+
+  <!-- Terminal Commands & Output -->
+  <text x="26" y="70" font-family="ui-monospace, monospace" font-size="13" fill="#3fb950">➜  edge-llm-security-and-kv-bench git:(main) <tspan fill="#c9d1d9">python3 kv_reasoning/anchor_aware_press.py --model DeepSeek-R1-Distill-Qwen-7B --budget 0.20</tspan></text>
+  <text x="26" y="94" font-family="ui-monospace, monospace" font-size="12" fill="#8b949e">[INFO] Initializing AnchorAwarePress (sink=4, window=64, alpha=1.0, beta_anchor=2.5, gamma_redundancy=0.65)</text>
+  <text x="26" y="114" font-family="ui-monospace, monospace" font-size="12" fill="#79c0ff">[ANCHOR] Protected structural tokens: ["Wait", "Therefore", "Ancak", "Sonuç", "=", "\\frac", "\\boxed"]</text>
+
+  <!-- Benchmark Comparison Box inside Terminal -->
+  <rect x="26" y="128" width="868" height="122" rx="8" fill="#0d1117" stroke="#30363d" stroke-width="1.2"/>
+  <text x="42" y="150" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#58a6ff">METHOD                         KV BUDGET    GSM8K ACC    MATH-500 ACC    AVG COT TOKENS    STATUS</text>
+  <line x1="42" y1="158" x2="878" y2="158" stroke="#30363d" stroke-width="1"/>
+  <text x="42" y="178" font-family="ui-monospace, monospace" font-size="12" fill="#c9d1d9">Full KV Cache (Baseline)       100%         84.2%        71.6%           1,140 tok         Uncompressed</text>
+  <text x="42" y="198" font-family="ui-monospace, monospace" font-size="12" fill="#f85149">StreamingLLM (Sink + Window)    20%         58.4%        44.0%           1,680 tok         Trace Inflation (!)</text>
+  <text x="42" y="218" font-family="ui-monospace, monospace" font-size="12" fill="#d29922">SnapKV-Decoding                 20%         79.8%        67.2%           1,290 tok         Moderate Drop</text>
+  <text x="42" y="238" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#3fb950">AnchorAwarePress (Ours)         20%         84.6% (+0.4) 71.8% (+0.2)    1,095 tok (-4%)   Optimal Retention ✓</text>
+
+  <!-- Second Command: Edge RK3566 C-Sidecar & Roofline -->
+  <text x="26" y="280" font-family="ui-monospace, monospace" font-size="13" fill="#3fb950">➜  edge-llm-security-and-kv-bench git:(main) <tspan fill="#c9d1d9">gcc -O2 edge_rk3566_lab/mcp_guard_sidecar.c -o mcp_guard &amp;&amp; ./mcp_guard</tspan></text>
+  <text x="26" y="304" font-family="ui-monospace, monospace" font-size="12" fill="#c9d1d9">{"id":"h1","label":"benign","tool":"repo_read","decision":"allow","reason":"allow"}           <tspan fill="#3fb950">[PASS 0.013 ms]</tspan></text>
+  <text x="26" y="324" font-family="ui-monospace, monospace" font-size="12" fill="#c9d1d9">{"id":"h4","label":"attack","tool":"fake_deploy","decision":"deny","reason":"schema_pin"}      <tspan fill="#bc8cff">[BLOCKED: SchemaPin]</tspan></text>
+  <text x="26" y="344" font-family="ui-monospace, monospace" font-size="12" fill="#c9d1d9">{"id":"h5","label":"attack","tool":"repo_read","decision":"deny","reason":"promptguard"}       <tspan fill="#bc8cff">[BLOCKED: PromptGuard-Lite]</tspan></text>
+  <text x="26" y="364" font-family="ui-monospace, monospace" font-size="12" fill="#c9d1d9">{"id":"h6","label":"attack","tool":"lint_code","decision":"deny","reason":"codeshield"}        <tspan fill="#bc8cff">[BLOCKED: CWE-120/CWE-78]</tspan></text>
+
+  <!-- Bottom Status Bar -->
+  <rect x="26" y="380" width="868" height="32" rx="6" fill="#161b22" stroke="#238636" stroke-width="1.2"/>
+  <text x="460" y="400" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#3fb950" text-anchor="middle">[3x Firefly RK3566 Lab Summary] cases=8 | allow=4 | deny=4 | FPR=0.0% | Recall=100.0% | mean_latency=0.013–0.052 ms</text>
+</svg>
